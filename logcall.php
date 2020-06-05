@@ -95,7 +95,7 @@ $conn->close();
                 </option>
                 <?php
                     for ($i = 0;$i < count($incidentTypes);$i++) {
-                        $incidentType = $incidentTypes[$i];
+                        $incidentTyp = $incidentTypes[$i];
                         echo '<option value="' . $incidentType['id'] . '">' .
                                $incidentType['type'] . '</option>';
                     }
