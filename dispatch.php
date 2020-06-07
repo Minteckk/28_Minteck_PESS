@@ -6,7 +6,7 @@ $typeOfIncident = $_POST['typeOfIncident'];
 $descriptionOfIncident = $_POST['descriptionOfIncident'];
 
 $sql = 'SELECT patrolcar_id,patrolcar_status_desc FROM patrolcar INNER JOIN patrolcar_status ON patrolcar_status.patrolcar_status_id = patrolcar.patrolcar_status_id';
-$car = [];
+$cars = [];
 require_once 'db.php';
 $conn = new mysqli(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATABASE);
 $result = $conn->query($sql);
