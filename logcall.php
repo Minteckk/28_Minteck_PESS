@@ -53,7 +53,35 @@ $conn->close();
       <?php
         require_once 'nav.php';
         ?>
-        Welcome <?php echo $_POST['Username'];?>
+        <?php  
+            $_SESSION['SESS_DISPLAYNAME'] = 'Michael';
+            
+            $rememberMeChecked = isset($_POST['RememberMe']);
+            if($rememberMeChecked == true) {
+                $expiryTime = time() + 60 * 60 * 24 * 30;
+                setcookie("COOKIE_DISPLAYNAME", "Michael" , $expiryTime);
+            }
+        $has_Cookie_DisplayName = isset($_COOKIE['COOKIE_DISPLAYNAME']);
+        if($has_Cookie_DisplayName == true)
+        {
+            $_cookie_DisplayName = $_COOKIE["COOKIE_DISPLAYNAME"];
+            echo "Welcome <strong>" . $_cookie_DisplayName . " ! </strong> [<a href='PESS_logout.php'>logout</a>]";
+        }
+        else {
+            if(isset($_SESSION) == false) {
+                session_start();
+            }
+            $has_Session_DisplayName = isset($_SESSION['SESS_DISPLAYNAME']);
+            if($has_Session_DisplayName == true)
+            {
+                $session_DisplayName = $_SESSION['SESS_DISPLAYNAME'];
+                echo "Welcome <strong>" . $session_DisplayName . " ! </strong> [<a href='PESS_logout.php'>logout</a>]";
+            }
+            else {
+                echo "<a href='PESS_login.php'>Logout</a>";
+            }
+        }
+        ?>
       <section style="margin-top: 20px">
         <form action="dispatch.php" method="post" name="frmLogCall" 
 	onSubmit="return validateForm()">
